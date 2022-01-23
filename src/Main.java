@@ -60,40 +60,37 @@ public class Main {
         camila.depositar(2500);
         sorvebao.depositar(30000);
 
-        //imprimindo os saldos atualizados das contas com os novos valores de deposito
+        /*//imprimindo os saldos atualizados das contas com os novos valores de deposito
         System.out.println("___Valor atualizado do saldo após depósito:___");
         System.out.println("Novo Saldo "+jonas.getDono()+":"+jonas.getSaldo());
         System.out.println("Novo Saldo "+samuel.getDono()+":"+samuel.getSaldo());
         System.out.println("Novo Saldo "+camila.getDono()+":"+camila.getSaldo());
-        System.out.println("Novo Saldo "+sorvebao.getDono()+":"+sorvebao.getSaldo());
+        System.out.println("Novo Saldo "+sorvebao.getDono()+":"+sorvebao.getSaldo());*/
 
         //sacando dinheiro na conta
         jonas.sacar(500);
+        jonas.sacar(50);
+        jonas.sacar(18);
         samuel.sacar(100);
         camila.sacar(150);
-        //sorvebao.sacar(1230);
+        sorvebao.sacar(1230);
 
 
-        //imprimindo os saldos atualizados das contas com os novos valores de saque
+        /*//imprimindo os saldos atualizados das contas com os novos valores de saque
         System.out.println("___Valor atualizado do saldo após saque:___");
         System.out.println("Novo Saldo "+jonas.getDono()+":"+jonas.getSaldo());
         System.out.println("Novo Saldo "+samuel.getDono()+":"+samuel.getSaldo());
         System.out.println("Novo Saldo "+camila.getDono()+":"+camila.getSaldo());
-        System.out.println("Novo Saldo "+sorvebao.getDono()+":"+sorvebao.getSaldo());
+        System.out.println("Novo Saldo "+sorvebao.getDono()+":"+sorvebao.getSaldo());*/
 
         //depositando dinheiro na conta
         jonas.depositar(50);
+        jonas.depositar(25);
         samuel.depositar(35);
         camila.depositar(269);
         sorvebao.depositar(550);
 
-        //tirando os extrantos das contas
-        jonas.extrato();
-        samuel.extrato();
-        camila.extrato();
-        sorvebao.extrato();
-
-        //logs do sistema
+         //logs do sistema
         System.out.println("Total de contas:"+Conta.totalContas);
         float numOpTotal=camila.numeroOp+ samuel.numeroOp;
         System.out.println("Total de operações:"+ numOpTotal);
@@ -164,8 +161,25 @@ public class Main {
         sorvebao.sacar(500);
 
         sorvebao.imprimirExtratoTaxas();
+        //sorvebao.imprimirExtrato(1);
+
+        //imprimindo os extratos das contas
+        System.out.println("*Extrato "+ Jonas.getNome());
+        jonas.imprimirExtrato(1);
+        System.out.println();
+        System.out.println("*Extrato "+ Jonas.getNome());
+        jonas.imprimirExtrato(2);
+        System.out.println();
+        System.out.println("*Extrato "+ Samuel.getNome());
+        samuel.imprimirExtrato(1);
+        System.out.println();System.out.println("*Extrato "+ Camila.getNome());
+        camila.imprimirExtrato(1);
+        System.out.println();
+        System.out.println("*Extrato "+ Sorvebao.getNome());
+        sorvebao.imprimirExtrato(2);
+        System.out.println();
+
+
     }
-
-
 
 }

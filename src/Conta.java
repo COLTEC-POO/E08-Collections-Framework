@@ -1,5 +1,8 @@
+import java.text.CollationElementIterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.lang.Comparable;
 
 public abstract class Conta implements ITaxas {
 
@@ -115,15 +118,42 @@ public abstract class Conta implements ITaxas {
 
     }
 
-     //-imprimirExtrato() - padrão:ordenado por data
+    public int imprimirExtrato(int opcao){
+        System.out.println("====Extrato de Operações ====");
+        if(opcao==1){
+            System.out.println("Visualização: por data de operação");
+            for(Operacao atual: this.operacoes){
+                System.out.println(atual.getData()+" "+atual.getTipo()+" "+atual.getValor());
+            }
+        }
+        if(opcao==2){
+            System.out.println("Visualização: por tipo de operação");
+            Collections.sort(this.operacoes);
+            for(Operacao atual: this.operacoes){
+                System.out.println(atual.getData()+" "+atual.getTipo()+" "+atual.getValor());
+            }
+        }
+        return opcao;
+    }
+
+
+    /* //-imprimirExtrato() - padrão:ordenado por data
     public void extrato(){
         System.out.println("====Extrato de Operações ====");
+        System.out.println("Visualização padrao: por data de operação");
         for(Operacao atual: this.operacoes){
             System.out.println(atual.getData()+" "+atual.getTipo()+" "+atual.getValor());
         }
-    }
+        System.out.println("Visualização ordenada: por tipo de operação");
+        Collections.sort(this.operacoes);
+        for(Operacao atual: this.operacoes){
+            System.out.println(atual.getData()+" "+atual.getTipo()+" "+atual.getValor());
+        }
+    }*/
 
-    //-imprimir de taxas
+
+
+    //-imprimir extrato de taxas
     public void imprimirExtratoTaxas(){
         double totalTaxas=this.calculaTaxas();
         System.out.println("===Extrato de Taxas===");
