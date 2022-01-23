@@ -123,6 +123,7 @@ public abstract class Conta implements ITaxas {
         }
     }
 
+    //-imprimir de taxas
     public void imprimirExtratoTaxas(){
         double totalTaxas=this.calculaTaxas();
         System.out.println("===Extrato de Taxas===");
@@ -136,7 +137,8 @@ public abstract class Conta implements ITaxas {
                 System.out.println("Saque:"+((OperacaoSaque) atual).calculaTaxas());
             }
         }
-        System.out.println("Saque:"+totalTaxas);
+        System.out.println();
+        System.out.println("Total de taxas:"+totalTaxas);
     }
 
 }
