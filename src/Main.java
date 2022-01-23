@@ -88,10 +88,10 @@ public class Main {
         sorvebao.depositar(550);
 
         //tirando os extrantos das contas
-        Operacao.extrato(jonas);
-        Operacao.extrato(samuel);
-        Operacao.extrato(camila);
-        Operacao.extrato(sorvebao);
+        jonas.extrato();
+        samuel.extrato();
+        camila.extrato();
+        sorvebao.extrato();
 
         //logs do sistema
         System.out.println("Total de contas:"+Conta.totalContas);

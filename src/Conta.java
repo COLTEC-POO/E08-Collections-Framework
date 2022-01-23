@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Conta {
+public abstract class Conta implements ITaxas {
 
     //atributos da classe Conta
     protected Cliente dono;
@@ -8,7 +9,7 @@ public abstract class Conta {
 
     private double saldo;
 
-    private ArrayList <Operacao> operacoes=new ArrayList<>();//- ver tela do video tempo 39:40
+    private List<Operacao> operacoes;//- ver tela do video tempo 39:40
 
     private double taxas;
 
@@ -27,8 +28,7 @@ public abstract class Conta {
         this.saldo=0;
         this.numero="0";
         this.dono=dono;
-        //this.operacoes=new Operacao[1000];
-        this.operacoes=new ArrayList();
+        this.operacoes=new ArrayList<>();
         numeroOp=0;
         Conta.totalContas++;
         this.numSaques=0;
@@ -56,8 +56,8 @@ public abstract class Conta {
         return this.saldo;
     }
 
-    public ArrayList getOperacoes() {
-        return operacoes;
+    public ArrayList<Operacao> getOperacoes() {
+        return (ArrayList<Operacao>) operacoes;
     }
 
     public void setOperacoes(ArrayList operacoes) {
@@ -115,14 +115,28 @@ public abstract class Conta {
 
     }
 
-    public void imprimirExtratoTaxas(){
-        System.out.println("===Extrato de Taxas===");
-        System.out.println("Manutenção de Conta:"+getTaxas());
-        for(int i=0;i<numSaques;i++){
-            System.out.println("Saque:0.05");
+     //-imprimirExtrato() - padrão:ordenado por data
+    public void extrato(){
+        System.out.println("====Extrato de Operações ====");
+        for(Operacao atual: this.operacoes){
+            System.out.println(atual.getData()+" "+atual.getTipo()+" "+atual.getValor());
         }
-        double tot= (taxas+(numSaques*0.05));
-        System.out.println("Total:"+tot);
+    }
+
+    public void imprimirExtratoTaxas(){
+        double totalTaxas=this.calculaTaxas();
+        System.out.println("===Extrato de Taxas===");
+        System.out.println();
+        System.out.println("Manutenção de Conta:"+this.calculaTaxas());
+        System.out.println();
+        System.out.println("Operações:");
+        for(Operacao atual:this.operacoes){
+            if(atual instanceof OperacaoSaque){
+                totalTaxas+=((OperacaoSaque) atual).calculaTaxas();
+                System.out.println("Saque:"+((OperacaoSaque) atual).calculaTaxas());
+            }
+        }
+        System.out.println("Saque:"+totalTaxas);
     }
 
 }

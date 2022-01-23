@@ -17,7 +17,7 @@ public class ContaCorrente extends Conta implements ITaxas {
             System.out.println("Limite alterado!");
         }
     }
-    //implementacao do mecanismo de tributacao - não está funcionando
+
     public double calculaTaxas() {
 
         if (dono instanceof PessoaFisica) {
