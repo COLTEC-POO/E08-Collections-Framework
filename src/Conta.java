@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public abstract class Conta {
 
@@ -187,21 +185,33 @@ public abstract class Conta {
     public void mostraExtrato(Integer separado){
         System.out.println("Conta " + this.numConta + " Titular: " + this.cliente.getNome() + " Saldo: R$ " + this.saldo);
         if (operacoes.size() != 0){
-            ArrayList<Operacao> saques = Collections.sort(operacoes.compareTo(operacoes));
-            ArrayList<Operacao> depositos = operacoes.sort();
+            ArrayList<Operacao> saques = new ArrayList<Operacao>();
+            ArrayList<Operacao> depositos = new ArrayList<Operacao>();
+
+            //Collections.sort(operacoes);
+
+            for (Operacao o : operacoes){
+                if (o!= null){
+                    if (o instanceof OperacaoSaque)
+                        saques.add(o);
+                    else
+                        depositos.add(o);
+                }
+            }
+
             for (Operacao o : depositos){
                 if (o!= null){
                     o.extrato();
                 }
             }
-            System.out.println("Depositos: " + this.depositos.size());
+            System.out.println("Depositos: " + depositos.size());
 
             for (Operacao o : saques){
                 if (o!= null){
                     o.extrato();
                 }
             }
-            System.out.println("Depositos: " + this.saques.size());
+            System.out.println("Saques: " + saques.size());
 
             System.out.println("Quantidade de Operações: " + this.operacoes.size());
         }
