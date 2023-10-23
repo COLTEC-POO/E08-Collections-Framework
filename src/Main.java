@@ -61,7 +61,7 @@ public class Main {
     universitaria.sacar(50);
     
     universitaria.imprimeExtratoTaxas();
-    universitaria.extrato(1);
+    universitaria.extrato(3); // Caso o tipo de ordenação seja inválido
 
   }
 }

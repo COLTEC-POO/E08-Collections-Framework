@@ -121,25 +121,31 @@ public abstract class Conta implements ITaxas{
     // Método que calcula quais e quantas operações foram realizadas na conta
 
     public void extrato(int flag){
-        
-        if (flag == 0) {
-            System.out.println("Extrato ordenado de acordo com a data de cada operação:");
-            for (int i = 0; i < this.operacoes.size(); i++) {
+
+        switch (flag) {
+            case 0: { 
+                System.out.println("Extrato ordenado de acordo com a data de cada operação:");
+                for (int i = 0; i < this.operacoes.size(); i++) {
                 Operacao x = this.operacoes.get(i);
-                System.out.println(x.toString()); // Redefinição do antigo método imprimeExtrato, que agora utiliza overrides de toString em vez de um método próprio - Atividade 05
+                System.out.println(x.toString());
+                } 
+                break;
             }
-    
-        }
-        if (flag == 1){
+            case 1: {
+                System.out.println("Extrato ordenado de acordo com o tipo de operação:");
 
-            System.out.println("Extrato ordenado de acordo com o tipo de operação:");
-            Collections.sort(this.operacoes);
-            
-            for(Operacao sorted : operacoes){
-                System.out.println(sorted);
+                Collections.sort(operacoes); // Tentei clonar a arraylist operacoes utilizando ArrayList<Operacao> cloneToSort = (ArrayList<Operacao>)operacoes.clone(); mas tava dando warning de type safety
+
+                for (Operacao sorted : operacoes){
+                    System.out.println(sorted);
+                }
+                break;
+            }
+            default: {
+                System.out.println("Tipo de ordenação inválido!");
+                break;
             }
         }
-
     }
 
     // Método que sobrescreve a função toString da class Object e transforma tudo em uma string - Atividade 05
